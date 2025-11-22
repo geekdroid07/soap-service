@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  soap-service:
+    build: .
+    container_name: wallet-soap-service
+    ports:
+      - '4000:4000'
+    env_file:
+      - .env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: wallet-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_NAME:-wallet}
+      MYSQL_USER: ${DB_USER:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

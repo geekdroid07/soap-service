@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Se requiere un archivo `.env` con configuraciones de BD y correo (ver `.env.example` si existe) y un servidor MySQL activo.
+Se requiere un archivo `.env` con configuraciones de BD y correo (ver `.env.example`) y un servidor MySQL activo.
 
 ## Ejecución en producción con Docker
 

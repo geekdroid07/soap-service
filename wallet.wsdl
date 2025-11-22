@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://interfell.com/wallet"
+  targetNamespace="http://interfell.com/wallet"
+  name="WalletService"
+>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://interfell.com/wallet" elementFormDefault="qualified">
+      <xsd:complexType name="ServiceResponse">
+        <xsd:sequence>
+          <xsd:element name="success" type="xsd:boolean" />
+          <xsd:element name="codError" type="xsd:string" />
+          <xsd:element name="messageError" type="xsd:string" />
+          <xsd:element name="data" type="xsd:anyType" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="RegisterClientRequestType">
+        <xsd:sequence>
+          <xsd:element name="document" type="xsd:string" />
+          <xsd:element name="fullName" type="xsd:string" />
+          <xsd:element name="email" type="xsd:string" />
+          <xsd:element name="phone" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="RechargeWalletRequestType">
+        <xsd:sequence>
+          <xsd:element name="document" type="xsd:string" />
+          <xsd:element name="phone" type="xsd:string" />
+          <xsd:element name="amount" type="xsd:decimal" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="InitiatePaymentRequestType">
+        <xsd:sequence>
+          <xsd:element name="document" type="xsd:string" />
+          <xsd:element name="phone" type="xsd:string" />
+          <xsd:element name="amount" type="xsd:decimal" />
+          <xsd:element name="description" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="ConfirmPaymentRequestType">
+        <xsd:sequence>
+          <xsd:element name="sessionId" type="xsd:string" />
+          <xsd:element name="token" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="GetWalletBalanceRequestType">
+        <xsd:sequence>
+          <xsd:element name="document" type="xsd:string" />
+          <xsd:element name="phone" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="RegisterClientRequest" type="tns:RegisterClientRequestType" />
+      <xsd:element name="RegisterClientResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="RegisterClientResult" type="tns:ServiceResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="RechargeWalletRequest" type="tns:RechargeWalletRequestType" />
+      <xsd:element name="RechargeWalletResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="RechargeWalletResult" type="tns:ServiceResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="InitiatePaymentRequest" type="tns:InitiatePaymentRequestType" />
+      <xsd:element name="InitiatePaymentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="InitiatePaymentResult" type="tns:ServiceResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="ConfirmPaymentRequest" type="tns:ConfirmPaymentRequestType" />
+      <xsd:element name="ConfirmPaymentResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ConfirmPaymentResult" type="tns:ServiceResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetWalletBalanceRequest" type="tns:GetWalletBalanceRequestType" />
+      <xsd:element name="GetWalletBalanceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="GetWalletBalanceResult" type="tns:ServiceResponse" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="RegisterClientRequest">
+    <wsdl:part name="parameters" element="tns:RegisterClientRequest" />
+  </wsdl:message>
+  <wsdl:message name="RegisterClientResponse">
+    <wsdl:part name="parameters" element="tns:RegisterClientResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="RechargeWalletRequest">
+    <wsdl:part name="parameters" element="tns:RechargeWalletRequest" />
+  </wsdl:message>
+  <wsdl:message name="RechargeWalletResponse">
+    <wsdl:part name="parameters" element="tns:RechargeWalletResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="InitiatePaymentRequest">
+    <wsdl:part name="parameters" element="tns:InitiatePaymentRequest" />
+  </wsdl:message>
+  <wsdl:message name="InitiatePaymentResponse">
+    <wsdl:part name="parameters" element="tns:InitiatePaymentResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="ConfirmPaymentRequest">
+    <wsdl:part name="parameters" element="tns:ConfirmPaymentRequest" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmPaymentResponse">
+    <wsdl:part name="parameters" element="tns:ConfirmPaymentResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="GetWalletBalanceRequest">
+    <wsdl:part name="parameters" element="tns:GetWalletBalanceRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetWalletBalanceResponse">
+    <wsdl:part name="parameters" element="tns:GetWalletBalanceResponse" />
+  </wsdl:message>
+
+  <wsdl:portType name="WalletPort">
+    <wsdl:operation name="RegisterClient">
+      <wsdl:input message="tns:RegisterClientRequest" />
+      <wsdl:output message="tns:RegisterClientResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="RechargeWallet">
+      <wsdl:input message="tns:RechargeWalletRequest" />
+      <wsdl:output message="tns:RechargeWalletResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="InitiatePayment">
+      <wsdl:input message="tns:InitiatePaymentRequest" />
+      <wsdl:output message="tns:InitiatePaymentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmPayment">
+      <wsdl:input message="tns:ConfirmPaymentRequest" />
+      <wsdl:output message="tns:ConfirmPaymentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWalletBalance">
+      <wsdl:input message="tns:GetWalletBalanceRequest" />
+      <wsdl:output message="tns:GetWalletBalanceResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="WalletServiceSoapBinding" type="tns:WalletPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterClient">
+      <soap:operation soapAction="http://interfell.com/wallet/RegisterClient" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RechargeWallet">
+      <soap:operation soapAction="http://interfell.com/wallet/RechargeWallet" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitiatePayment">
+      <soap:operation soapAction="http://interfell.com/wallet/InitiatePayment" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmPayment">
+      <soap:operation soapAction="http://interfell.com/wallet/ConfirmPayment" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWalletBalance">
+      <soap:operation soapAction="http://interfell.com/wallet/GetWalletBalance" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="WalletService">
+    <wsdl:port name="WalletPort" binding="tns:WalletServiceSoapBinding">
+      <soap:address location="http://localhost:4000/wsdl" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

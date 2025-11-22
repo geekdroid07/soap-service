@@ -1,4 +1,7 @@
-import { createWalletUseCases } from '../../application/factories/createWalletUseCases';
+import {
+  createWalletUseCases,
+  type WalletUseCases,
+} from '../../application/factories/createWalletUseCases';
 import { executeUseCase } from '../../application/utils/executeUseCase';
 import { RegisterClientInput } from '../../application/use-cases/RegisterClientUseCase';
 import { RechargeWalletInput } from '../../application/use-cases/RechargeWalletUseCase';
@@ -18,8 +21,8 @@ const wrapResponse = async <Input>(
   return executeUseCase(executor, payload);
 };
 
-export const getSoapServiceDefinition = async () => {
-  const useCases = await createWalletUseCases();
+export const getSoapServiceDefinition = async (providedUseCases?: WalletUseCases) => {
+  const useCases = providedUseCases ?? (await createWalletUseCases());
 
   return {
     WalletService: {

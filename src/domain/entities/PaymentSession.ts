@@ -22,7 +22,7 @@ export class PaymentSession {
   @Column({ name: 'session_id', unique: true })
   sessionId!: string;
 
-  @Column({ name: 'token', length: 6 })
+  @Column({ name: 'token', type: 'text' })
   token!: string;
 
   @Column({

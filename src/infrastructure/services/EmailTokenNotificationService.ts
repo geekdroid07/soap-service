@@ -28,11 +28,16 @@ export class EmailTokenNotificationService implements TokenNotificationService {
   }
 
   async notifyPaymentToken(email: string, token: string): Promise<void> {
-    await this.transporter.sendMail({
-      from: this.from,
-      to: email,
-      subject: 'Token de confirmación de pago',
-      text: `Tu token de confirmación es: ${token}`,
-    });
+    try {
+      await this.transporter.sendMail({
+        from: this.from,
+        to: email,
+        subject: 'Token de confirmación de pago',
+        text: `Tu token de confirmación es: ${token}`,
+      });
+    } catch (error) {
+      console.error(`Error sending payment token email: ${(error as Error).message}`);
+      throw new Error(`Error sending payment token email: ${(error as Error).message}`);
+    }
   }
 }

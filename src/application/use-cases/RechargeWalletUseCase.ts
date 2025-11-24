@@ -32,7 +32,7 @@ export class RechargeWalletUseCase {
       throw new ApplicationError(ERROR_CODES.NOT_FOUND, 'Cliente no encontrado');
     }
 
-    client.balance += amount;
+    client.balance += Number(amount);
     const transaction = this.walletTransactionRepository.create({
       type: 'RECHARGE',
       amount,
